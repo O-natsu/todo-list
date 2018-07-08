@@ -7,7 +7,8 @@ export class InputForm extends React.Component {
 
         this.state = {
             value: '',
-            message: ''
+            message: '',
+            done: false,
         };
 
         // bind(this)で固定
@@ -27,10 +28,19 @@ export class InputForm extends React.Component {
     onSendHandler() {
         // 押したら初期化
         const val = this.state.value;
+        if (val === '') {
+            this.setState({
+                value: '',
+                message: '何も入力されていません',
+                done: false,
+            });
+            return;
+        }
         // message = value
         this.setState({
             value: '',
-            message: val
+            message: val,
+            done: 'checked',
         });
     }
 
